@@ -9,17 +9,17 @@ const rootDir = path.resolve(__dirname, '..');
 process.chdir(rootDir);
 
 if (!fs.existsSync('caches/pokemon-showdown')) {
-	child_process.execSync('git clone https://github.com/smogon/pokemon-showdown.git', {
+	child_process.execSync('git clone https://github.com/Rezzo64/ps-mushi.git', {
 		cwd: 'caches',
 	});
 }
 
 process.stdout.write("Syncing data from Git repository... ");
-child_process.execSync('git pull', {cwd: 'caches/pokemon-showdown'});
-child_process.execSync('npm run build', {cwd: 'caches/pokemon-showdown'});
+child_process.execSync('git pull', {cwd: 'caches/ps-mushi'});
+child_process.execSync('npm run build', {cwd: 'caches/ps-mushi'});
 console.log("DONE");
 
-const Dex = require('../caches/pokemon-showdown/dist/sim/dex').Dex;
+const Dex = require('../caches/ps-mushi/dist/sim/dex').Dex;
 const toID = Dex.toID;
 process.stdout.write("Loading gen 6 data... ");
 Dex.includeData();
