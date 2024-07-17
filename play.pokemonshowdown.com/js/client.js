@@ -753,13 +753,9 @@ function toId() {
 
 			var self = this;
 			var constructSocket = function () {
-				if (location.host === 'localhost.psim.us' || /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\.psim\.us/.test(location.host)) {
-					// normally we assume HTTPS means HTTPS, but make an exception for
-					// localhost and IPs which generally can't have a signed cert anyway.
-					Config.server.port = 8000;
-					Config.server.https = false;
-				}
-				var protocol = (Config.server.port === 443 || Config.server.https) ? 'https' : 'http';
+				Config.server.port = 8000;
+				Config.server.https = false;
+				var protocol = 'http';
 				Config.server.host = $.trim(Config.server.host);
 				try {
 					if (Config.server.host === 'localhost') {
